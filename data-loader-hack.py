@@ -44,7 +44,11 @@ def yearly_bhav_data(year, month, dates):
             # date_end = time()
             # print(f"Took %.3f second for {trade_date}" % (date_end - date_start))
 
+<<<<<<< HEAD
             temp_df.to_csv(f"{MONTH_DIR}/bhavdata_{trade_date}.csv", index=False)
+=======
+            temp_df.to_csv(f"{MONTH_DIR}/bhavdata_{trade_date}.csv")
+>>>>>>> 8140ea4b00ff1e366c19ec65ff5f9968422fca1e
         except KeyError:
             # print(f"No activity on {trade_date}")
             pass
@@ -75,8 +79,12 @@ def yearly_price_volume_and_deliverable_position_data(year, month, dates):
             except KeyError:
                 print(f"No activity for {symbol} from {from_date} to {to_date}")
     price_volume_and_deliverable_position_df.to_csv(
+<<<<<<< HEAD
         f".{BASE_DIR}/price_volume_and_deliverable_position_df_full_data_{month}.csv",
         index=False,
+=======
+        f".{BASE_DIR}/price_volume_and_deliverable_position_df_full_data_{month}.csv"
+>>>>>>> 8140ea4b00ff1e366c19ec65ff5f9968422fca1e
     )
 
     print(price_volume_and_deliverable_position_df.shape)
@@ -85,8 +93,13 @@ def yearly_price_volume_and_deliverable_position_data(year, month, dates):
 for month in months:
     # month_start = time()
     num_days = monthrange(year, month)[1]
+<<<<<<< HEAD
     sdate = date(year=year, month=month, day=1)  # start date
     edate = date(year=year, month=month, day=num_days)  # end date
+=======
+    sdate = date(year=2023, month=month, day=1)  # start date
+    edate = date(year=2023, month=month, day=num_days)  # end date
+>>>>>>> 8140ea4b00ff1e366c19ec65ff5f9968422fca1e
     dates = pd.date_range(sdate, edate, freq="d").strftime("%d-%m-%Y").tolist()
     yearly_bhav_data(year, month, dates)
     # yearly_price_volume_and_deliverable_position_data(
