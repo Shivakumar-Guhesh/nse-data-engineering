@@ -1,19 +1,17 @@
-Install nselib to fetch NSE data
+Download attached requirements.txt file
 
-Documentation: https://github.com/RuchiTanmay/nselib/tree/main
+Run `pip install -r requirements.txt` to install all the python packages.
 
-Note: Install tqdm for viewing for loop progress
+ - nselib is used to fetch NSE data
 
-Download a year's NSE's Bhavcopy data using nse_data_downloader.py
+   Documentation: https://github.com/RuchiTanmay/nselib/tree/main
+
+  - tqdm for viewing for loop progress
+
+Provide appropriate details in .env file
+
+Optional
+
+Download a year's NSE's Bhavcopy data to local file system using nse_data_downloader.py
 
 Usage: `python nse_data_downloader.py <year>`
-
-Build docker image
-
-`docker compose build`
-
-Start docker image
-
-`docker compose up`
-
-To access mage instance navigate to http://localhost:6789 in your browser

@@ -39,10 +39,6 @@ A Bhavcopy (in a way, ticker tape in Indian context) is a daily snapshot of all 
 
 [First Time Setup](https://github.com/Shivakumar-Guhesh/nse-data-engineering/blob/main/setup.md)
 
-Download a year's NSE's Bhavcopy data using nse_data_downloader.py
-
-Usage: `python nse_data_downloader.py <year>`
-
 Build docker image
 
 `docker compose build`
@@ -53,6 +49,7 @@ Start docker image
 
 To access mage instance navigate to http://localhost:6789 in your browser
 
+Run nse_equity_history pipeline in mage to load history data into postgres db
 
 Coming soon:
 
