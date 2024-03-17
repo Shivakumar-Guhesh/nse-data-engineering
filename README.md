@@ -36,13 +36,8 @@ A Bhavcopy (in a way, ticker tape in Indian context) is a daily snapshot of all 
 
 ## Getting Started
 
-    Setup.md
 
-Install nselib to fetch NSE data
-
-Documentation: https://github.com/RuchiTanmay/nselib/tree/main
-
-Note: Install tqdm for viewing for loop progress
+[First Time Setup](https://github.com/Shivakumar-Guhesh/nse-data-engineering/blob/main/setup.md)
 
 Download a year's NSE's Bhavcopy data using nse_data_downloader.py
 
