@@ -32,6 +32,10 @@ def load_data_from_api(*args, **kwargs):
             edate = date(year=year, month=month, day=num_days)  # end date
             dates = pd.date_range(sdate, edate, freq="d").strftime("%d-%m-%Y").tolist()
             for trade_date in tqdm(dates, desc="Dates: ",leave=False, ncols=80, position=1):
+            it = tqdm(total=len(dates))
+            for e in arr:
+                it.update(1)
+                print(it)
                 try:
                     file = f"{file_pattern}_{trade_date}"
                     url = f"{base_url}/{year}/{month:02}/{file}.csv"

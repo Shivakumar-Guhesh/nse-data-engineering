@@ -43,6 +43,8 @@ def load_data_from_api(*args, **kwargs):
                         pass
                     else:
                         raise
+                it.update(1)
+                # print(it)
 
     print(f"Shape of data: {equity_data.shape}")
     return equity_data

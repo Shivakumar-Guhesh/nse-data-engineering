@@ -6,6 +6,7 @@ from datetime import date
 from calendar import monthrange
 from urllib.error import HTTPError
 from tqdm import tqdm
+import sys
 
 if "data_loader" not in globals():
     from mage_ai.data_preparation.decorators import data_loader
@@ -26,12 +27,12 @@ def load_data_from_api(*args, **kwargs):
     years = [2021]
     months = [x for x in range(1, 13)]
     for year in years:
-        for month in tqdm(months, desc="Months: "):
+        for month in tqdm(months, desc="Months: ", file=sys.stdout):
             num_days = monthrange(year, month)[1]
             sdate = date(year=year, month=month, day=1)  # start date
             edate = date(year=year, month=month, day=num_days)  # end date
             dates = pd.date_range(sdate, edate, freq="d").strftime("%d-%m-%Y").tolist()
-            for trade_date in tqdm(dates, desc="Dates: ",leave=False, ncols=80, position=1):
+            for trade_date in tqdm(dates, desc="Dates: ", file=sys.stdout):
                 try:
                     file = f"{file_pattern}_{trade_date}"
                     url = f"{base_url}/{year}/{month:02}/{file}.csv"

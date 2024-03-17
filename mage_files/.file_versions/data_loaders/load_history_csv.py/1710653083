@@ -31,7 +31,7 @@ def load_data_from_api(*args, **kwargs):
             sdate = date(year=year, month=month, day=1)  # start date
             edate = date(year=year, month=month, day=num_days)  # end date
             dates = pd.date_range(sdate, edate, freq="d").strftime("%d-%m-%Y").tolist()
-            for trade_date in tqdm(dates, desc="Dates: ",leave=False, ncols=80, position=1):
+            for trade_date in tqdm(dates, desc="Dates: "):
                 try:
                     file = f"{file_pattern}_{trade_date}"
                     url = f"{base_url}/{year}/{month:02}/{file}.csv"
@@ -44,13 +44,13 @@ def load_data_from_api(*args, **kwargs):
                     else:
                         raise
 
-    print(f"Shape of data: {equity_data.shape}")
-    return equity_data
+#     print(f"Shape of data: {equity_data.shape}")
+#     return equity_data
 
 
-@test
-def test_output(output, *args) -> None:
-    """
-    Template code for testing the output of the block.
-    """
-    assert output is not None, "The output is undefined"
+# @test
+# def test_output(output, *args) -> None:
+#     """
+#     Template code for testing the output of the block.
+#     """
+#     assert output is not None, "The output is undefined"

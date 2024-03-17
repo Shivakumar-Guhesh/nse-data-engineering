@@ -31,7 +31,9 @@ def load_data_from_api(*args, **kwargs):
             sdate = date(year=year, month=month, day=1)  # start date
             edate = date(year=year, month=month, day=num_days)  # end date
             dates = pd.date_range(sdate, edate, freq="d").strftime("%d-%m-%Y").tolist()
-            for trade_date in tqdm(dates, desc="Dates: ",leave=False, ncols=80, position=1):
+            # for trade_date in tqdm(dates, desc="Dates: ",leave=False, ncols=80, position=1):
+            it = tqdm(total=len(dates))
+            for trade_date in dates:
                 try:
                     file = f"{file_pattern}_{trade_date}"
                     url = f"{base_url}/{year}/{month:02}/{file}.csv"
@@ -43,6 +45,8 @@ def load_data_from_api(*args, **kwargs):
                         pass
                     else:
                         raise
+                it.update(1)
+                # print(it)
 
     print(f"Shape of data: {equity_data.shape}")
     return equity_data

@@ -31,18 +31,19 @@ def load_data_from_api(*args, **kwargs):
             sdate = date(year=year, month=month, day=1)  # start date
             edate = date(year=year, month=month, day=num_days)  # end date
             dates = pd.date_range(sdate, edate, freq="d").strftime("%d-%m-%Y").tolist()
-            for trade_date in tqdm(dates, desc="Dates: ",leave=False, ncols=80, position=1):
-                try:
-                    file = f"{file_pattern}_{trade_date}"
-                    url = f"{base_url}/{year}/{month:02}/{file}.csv"
-                    df = pd.read_csv(url, sep=",")
+            with tqdm(total=total, position=0, leave=True) as pbar:
+                for trade_date in tqdm(dates, desc="Dates: "):
+                    try:
+                        file = f"{file_pattern}_{trade_date}"
+                        url = f"{base_url}/{year}/{month:02}/{file}.csv"
+                        df = pd.read_csv(url, sep=",")
 
-                    equity_data = pd.concat([equity_data, df], ignore_index=True)
-                except HTTPError as err:
-                    if err.code == 404:
-                        pass
-                    else:
-                        raise
+                        equity_data = pd.concat([equity_data, df], ignore_index=True)
+                    except HTTPError as err:
+                        if err.code == 404:
+                            pass
+                        else:
+                            raise
 
     print(f"Shape of data: {equity_data.shape}")
     return equity_data
