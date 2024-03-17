@@ -7,6 +7,14 @@ from tqdm import tqdm
 
 def load_data_from_api(*args, **kwargs):
     """
+    Description of load_data_from_api
+
+    Args:
+        *args (undefined):
+        **kwargs (undefined):
+
+    """
+    """
     Template for loading data from API
     """
     data = pd.DataFrame()

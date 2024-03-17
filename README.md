@@ -7,7 +7,7 @@ This project tries to provide  a better understanding of the stock market to an 
 
 ## Dataset
 
-This project uses the nselib python package to fetch equity-bhavcopy data.
+This project uses the nselib python package to fetch bhavcopy data.
 
 #### What is bhavcopy?
 
@@ -22,12 +22,12 @@ A Bhavcopy (in a way, ticker tape in Indian context) is a daily snapshot of all 
 
 ## Tools and Technologies used
 
- * Docker - Used to containarize the project
+ * Docker + Docker-compose - Used to maintain consistent versions across platforms/environments and define/share multi-containers
 
  * Terraform - Used to automate the deployment and management of infrastructure on Google Cloud Platform (GCP)
 
  * GCP - Used to store and process large amounts of data for the stock data analysis project. 
-    * BigQuery is used as data-warehouse to store and query the stock data, 
+    * BigQuery is used as data-warehouse to store and query the stock data 
     * Google Cloud Storage is used as data lake to store the raw data before it is transformed
 
  * Mage - Used to orchestrate the ETL (extract, transform, load) pipeline for the stock data analysis project.

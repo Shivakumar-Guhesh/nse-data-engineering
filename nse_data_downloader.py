@@ -28,7 +28,17 @@ symbols = list(capital_market.equity_list()["SYMBOL"])
 
 
 def yearly_bhav_data(year, month, dates):
-    # bhav_df = pd.DataFrame()
+    """
+    Takes year, month and dates as arguments and downloads
+    bhav_copy_with_delivery data from nselib for the given dates
+    and saves it in a csv file for each date.
+
+    Args:
+        year : integer
+        month : integer
+        dates : list of dates with each date in the format '%d-%m-%Y'
+
+    """
     print(f"Downloading data for {month:02}-{year}")
     MONTH_DIR = f"{BASE_DIR}/{month:02}"
     if not os.path.exists(MONTH_DIR):
