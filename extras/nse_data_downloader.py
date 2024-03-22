@@ -16,7 +16,7 @@ args = vars(parser.parse_args())
 year = args["year"]
 print(f"Processing for year {year}")
 
-BASE_DIR = f"./data/{year}"
+BASE_DIR = f"../data/{year}"
 
 if not os.path.exists(BASE_DIR):
     os.makedirs(BASE_DIR)
