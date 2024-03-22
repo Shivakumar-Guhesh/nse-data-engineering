@@ -1,0 +1,27 @@
+version: 0.1.1
+default:
+  # Default profile created for data IO access.
+  # Add your credentials for the source you use, and delete the rest.
+  # Google
+  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/path/to/your/service/account/key.json"
+  GOOGLE_LOCATION: US # Optional
+  # PostgresSQL
+  POSTGRES_CONNECT_TIMEOUT: 10
+  POSTGRES_DBNAME: postgres
+  POSTGRES_SCHEMA: public # Optional
+  POSTGRES_USER: username
+  POSTGRES_PASSWORD: password
+  POSTGRES_HOST: hostname
+  POSTGRES_PORT: 5432
+dev:
+  # Google
+  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/home/src/keys/mage-zoomcamp-runner_creds.json"
+  GOOGLE_LOCATION: ASIA-SOUTH1 # Optional
+  # PostgresSQL
+  POSTGRES_CONNECT_TIMEOUT: 10
+  POSTGRES_DBNAME: "{{ env_var('POSTGRES_DBNAME')}}"
+  POSTGRES_SCHEMA: "{{ env_var('POSTGRES_SCHEMA')}}" # Optional
+  POSTGRES_USER: "{{ env_var('POSTGRES_USER')}}"
+  POSTGRES_PASSWORD: "{{ env_var('POSTGRES_PASSWORD')}}"
+  POSTGRES_HOST: "{{ env_var('POSTGRES_HOST')}}"
+  POSTGRES_PORT: "{{ env_var('POSTGRES_PORT')}}"
