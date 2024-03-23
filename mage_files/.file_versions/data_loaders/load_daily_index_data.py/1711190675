@@ -1,0 +1,76 @@
+import io
+import pandas as pd
+
+from datetime import date
+import datetime
+from nselib import capital_market
+from calendar import monthrange
+
+if 'data_loader' not in globals():
+    from mage_ai.data_preparation.decorators import data_loader
+if 'test' not in globals():
+    from mage_ai.data_preparation.decorators import test
+
+
+@data_loader
+def load_data_from_api(*args, **kwargs):
+    """
+    Template for loading data from API
+    """
+    # trade_date = kwargs['execution_date'].strftime("%d-%m-%Y")
+    trade_date = '04-01-2023'
+    # trade_date = (kwargs['execution_date'] - datetime.timedelta(days=3)).strftime("%d-%m-%Y")
+    print()
+    print("==============================================")
+    print(f"|Executing load_data_from_api for {trade_date}|")
+    print("==============================================")
+    print()
+# float64
+    columns_dtypes = {
+            'Index Name': 'str',
+            'Index Date': 'datetime64[ns]',
+            'Open Index Value': 'float64',
+            'High Index Value': 'float64',
+            'Low Index Value': 'str',
+            'Closing Index Value': 'str',
+            'Points Change': 'str',
+            'Change(%)': 'str',
+            'Volume': 'str',
+            'Turnover (Rs. Cr.)': 'str',
+            'P/E': 'str',
+            'P/B': 'str',
+            'Div Yield': 'str',
+        }
+
+    bci_df = pd.DataFrame()
+    try:
+        bci_df = capital_market.capital_market_data.bhav_copy_indices(trade_date=trade_date)
+        # bci_df = bci_df.astype(dtype= columns_dtypes)
+        df_tmp = pd.DataFrame(bci_df)
+
+        # Replace non-numeric characters with an empty string
+        df_tmp['Open Index Value'] = df_tmp['Open Index Value'].replace({'[^0-9.]': ''}, regex=True)
+
+        # Replace remaining empty strings with NaN
+        df_tmp['Open Index Value'] = df_tmp['Open Index Value'].replace({'': np.nan})
+
+        # Convert the column to float
+        df_tmp['Open Index Value'] = df_tmp['Open Index Value'].astype(float)
+
+        bci_df = df_tmp
+
+print(df_tmp)
+    except KeyError:
+        # print(f"No activity on {trade_date}")
+        pass
+
+    print(f"Shape of data: {bci_df.shape}")
+    return bci_df
+
+
+@test
+def test_output(output, *args) -> None:
+    """
+    Template code for testing the output of the block.
+    """
+    assert output is not None, 'The output is undefined'
