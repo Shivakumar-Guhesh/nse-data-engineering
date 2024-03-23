@@ -2,14 +2,11 @@ import io
 import pandas as pd
 
 from datetime import date
-import datetime
 from nselib import capital_market
-from calendar import monthrange
-import argparse
 
-if 'data_loader' not in globals():
+if "data_loader" not in globals():
     from mage_ai.data_preparation.decorators import data_loader
-if 'test' not in globals():
+if "test" not in globals():
     from mage_ai.data_preparation.decorators import test
 
 
@@ -19,8 +16,8 @@ def load_data_from_api(*args, **kwargs):
     Template for loading data from API
     """
 
-    trade_date = '04-01-2023'
-    # trade_date = kwargs['execution_date'].strftime("%d-%m-%Y")
+    # trade_date = "04-01-2023"
+    trade_date = kwargs["execution_date"].strftime("%d-%m-%Y")
     # trade_date = (kwargs['execution_date'] - datetime.timedelta(days=3)).strftime("%d-%m-%Y")
 
     bce_df = pd.DataFrame()
@@ -39,4 +36,4 @@ def test_output(output, *args) -> None:
     """
     Template code for testing the output of the block.
     """
-    assert output is not None, 'The output is undefined'
+    assert output is not None, "The output is undefined"

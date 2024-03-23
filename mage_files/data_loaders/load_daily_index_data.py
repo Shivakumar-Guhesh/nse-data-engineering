@@ -1,17 +1,13 @@
 import io
 import pandas as pd
 import numpy as np
-
-from datetime import date
-import datetime
 from nselib import capital_market
-from calendar import monthrange
 
-if 'data_loader' not in globals():
+
+if "data_loader" not in globals():
     from mage_ai.data_preparation.decorators import data_loader
-if 'test' not in globals():
+if "test" not in globals():
     from mage_ai.data_preparation.decorators import test
-
 
 
 @data_loader
@@ -19,16 +15,13 @@ def load_data_from_api(*args, **kwargs):
     """
     Template for loading data from API
     """
-    # trade_date = kwargs['execution_date'].strftime("%d-%m-%Y")
-    trade_date = '04-01-2023'
-    # trade_date = (kwargs['execution_date'] - datetime.timedelta(days=3)).strftime("%d-%m-%Y")
-
-    
+    trade_date = kwargs["execution_date"].strftime("%d-%m-%Y")
 
     bci_df = pd.DataFrame()
     try:
-        bci_df = capital_market.capital_market_data.bhav_copy_indices(trade_date=trade_date)
-        
+        bci_df = capital_market.capital_market_data.bhav_copy_indices(
+            trade_date=trade_date
+        )
 
     except KeyError:
         # print(f"No activity on {trade_date}")
@@ -43,4 +36,4 @@ def test_output(output, *args) -> None:
     """
     Template code for testing the output of the block.
     """
-    assert output is not None, 'The output is undefined'
+    assert output is not None, "The output is undefined"

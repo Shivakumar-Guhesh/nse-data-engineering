@@ -1,25 +1,9 @@
-import re
 import pandas as pd
-import numpy as np
+from mage_files.comman_transformations import *
 
-def toSnakeCase(string):
-    string = re.sub(r'(?<=[a-z])(?=[A-Z])|[^a-zA-Z]', ' ', string).strip().replace(' ', '_')
-    return ''.join(string.lower())
-
-def str_to_numeric(data,col, dtype):
-    df_tmp = pd.DataFrame(data)
-    # Replace non-numeric characters with an empty string
-    df_tmp[col] = df_tmp[col].replace({'[^0-9.]': ''}, regex=True)
-    # Replace remaining empty strings with NaN
-    df_tmp[col] = df_tmp[col].replace({'': np.nan})
-    # Convert the column to float
-    df_tmp[col] = df_tmp[col].astype(dtype)
-
-    return df_tmp[col]
-
-if 'transformer' not in globals():
+if "transformer" not in globals():
     from mage_ai.data_preparation.decorators import transformer
-if 'test' not in globals():
+if "test" not in globals():
     from mage_ai.data_preparation.decorators import test
 
 
@@ -40,24 +24,24 @@ def transform(data, *args, **kwargs):
     """
     # Specify your transformation logic here
     columns_dtypes = {
-            'Index Name': 'str',
-            'Index Date': 'datetime64[ns]',
-            'Open Index Value': 'float64',
-            'High Index Value': 'float64',
-            'Low Index Value': 'float64',
-            'Closing Index Value': 'float64',
-            'Points Change': 'float64',
-            'Change(%)': 'float64',
-            'Volume': 'Int64',
-            'Turnover (Rs. Cr.)': 'str',
-            'P/E': 'str',
-            'P/B': 'str',
-            'Div Yield': 'str',
-        }
-    for col,data_type in columns_dtypes.items():
-            if data_type in ('float64','Int64'):
-                data[col] = str_to_numeric(data,col,data_type)
-    data = data.astype(dtype= columns_dtypes)
+        "Index Name": "str",
+        "Index Date": "datetime64[ns]",
+        "Open Index Value": "float64",
+        "High Index Value": "float64",
+        "Low Index Value": "float64",
+        "Closing Index Value": "float64",
+        "Points Change": "float64",
+        "Change(%)": "float64",
+        "Volume": "Int64",
+        "Turnover (Rs. Cr.)": "str",
+        "P/E": "str",
+        "P/B": "str",
+        "Div Yield": "str",
+    }
+    for col, data_type in columns_dtypes.items():
+        if data_type in ("float64", "Int64"):
+            data[col] = str_to_numeric(data, col, data_type)
+    data = data.astype(dtype=columns_dtypes)
 
     old_columns = list(data.columns.values)
     new_columns = [toSnakeCase(column) for column in old_columns]
@@ -71,4 +55,4 @@ def test_output(output, *args) -> None:
     """
     Template code for testing the output of the block.
     """
-    assert output is not None, 'The output is undefined'
+    assert output is not None, "The output is undefined"

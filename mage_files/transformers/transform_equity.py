@@ -1,12 +1,8 @@
-import re
+from mage_files.comman_transformations import *
 
-def toSnakeCase(string):
-    string = re.sub(r'(?<=[a-z])(?=[A-Z])|[^a-zA-Z]', ' ', string).strip().replace(' ', '_')
-    return ''.join(string.lower())
-
-if 'transformer' not in globals():
+if "transformer" not in globals():
     from mage_ai.data_preparation.decorators import transformer
-if 'test' not in globals():
+if "test" not in globals():
     from mage_ai.data_preparation.decorators import test
 
 
@@ -27,20 +23,20 @@ def transform(data, *args, **kwargs):
     """
     # Specify your transformation logic here
     columns_dtypes = {
-            'SYMBOL': 'str',
-            'SERIES': 'str',
-            'OPEN': 'float64',
-            'HIGH': 'float64',
-            'LOW': 'float64',
-            'CLOSE': 'float64',
-            'LAST': 'float64',
-            'PREVCLOSE': 'float64',
-            'TOTTRDQTY': 'Int64',
-            'TOTTRDVAL': 'float64',
-            'TIMESTAMP': 'datetime64[ns]',
-            'TOTALTRADES': 'Int64',
-        }
-    data = data.astype(dtype= columns_dtypes)
+        "SYMBOL": "str",
+        "SERIES": "str",
+        "OPEN": "float64",
+        "HIGH": "float64",
+        "LOW": "float64",
+        "CLOSE": "float64",
+        "LAST": "float64",
+        "PREVCLOSE": "float64",
+        "TOTTRDQTY": "Int64",
+        "TOTTRDVAL": "float64",
+        "TIMESTAMP": "datetime64[ns]",
+        "TOTALTRADES": "Int64",
+    }
+    data = data.astype(dtype=columns_dtypes)
 
     old_columns = list(data.columns.values)
     new_columns = [toSnakeCase(column) for column in old_columns]
@@ -53,4 +49,4 @@ def test_output(output, *args) -> None:
     """
     Template code for testing the output of the block.
     """
-    assert output is not None, 'The output is undefined'
+    assert output is not None, "The output is undefined"
