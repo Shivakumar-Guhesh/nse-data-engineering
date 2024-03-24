@@ -2,7 +2,7 @@
 
 resource "google_filestore_instance" "instance" {
   name     = var.app_name
-  location = var.region
+  location = var.zone
   tier     = "BASIC_HDD"
 
   file_shares {

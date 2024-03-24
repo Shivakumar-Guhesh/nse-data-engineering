@@ -30,7 +30,13 @@ variable "project_id" {
 variable "region" {
   description = "Region"
   #Update the below to your desired region
-  default = "us-central1"
+  default = "asia-south1"
+}
+
+variable "zone" {
+  type        = string
+  description = "The default compute zone"
+  default     = "asia-south1-a"
 }
 
 
