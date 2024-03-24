@@ -26,13 +26,14 @@ A Bhavcopy (in a way, ticker tape in Indian context) is a daily snapshot of all 
 
  * Terraform - Used to automate the deployment and management of infrastructure on Google Cloud Platform (GCP)
 
- * GCP - Used to store and process large amounts of data for the stock data analysis project. 
+ * GCP 
     * BigQuery is used as data-warehouse to store and query the stock data 
     * Google Cloud Storage is used as data lake to store the raw data before it is transformed
+    * Cloud Run is used for running deployed Mage pipelines on cloud
 
  * Mage - Used to orchestrate the ETL (extract, transform, load) pipeline for the stock data analysis project.
 
- * dbt - Used to transform the raw stock data into a format that is optimized for analysis. dbt is used to model the data and store it in BigQuery, allowing for efficient querying and analysis.
+ * dbt - Used to transform the raw stock data to make it more suitable for analysis.
 
 ## Getting Started
 
