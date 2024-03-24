@@ -1,10 +1,10 @@
 name: Deploy to GCP Cloud Run
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
-
 env:
   GAR_LOCATION: asia-south1
   GOOGLE_CLOUD_RUN_SERVICE_NAME: nse-deploy-mage
