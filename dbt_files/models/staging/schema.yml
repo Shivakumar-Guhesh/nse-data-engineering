@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: staging
+    database: nse-data-engineering
+    schema: nse_data_all_dataset
+    tables:
+      - name: bhav_copy_equities
+      - name: bhav_copy_indices
