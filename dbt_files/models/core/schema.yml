@@ -1,26 +1,40 @@
 
 version: 2
 
-sources:
-  - name: staging
-    database: nse-data-engineering
-    schema: nse_data_all_dataset
-    tables:
-      - name: bhav_copy_equities
-      - name: bhav_copy_indices
-
 models:
-  - name: stg_bhav_copy_equities
-    description: "Staging table for daily bhav_copy data for equities segment in NSE"
+  - name: dim_symbols
+    description: "Dimension table containing information about equity-symbols"
+    columns:
+      - name: symbol
+        data_type: string
+        description: "The stock symbol or the identifier of the security."
+
+      - name: name_of_company
+        data_type: string
+        description: "The stock name of the security."
+
+      - name: series
+        data_type: string
+        description: The series of the security, such as equity shares, debentures, etc. Values are EQ, BE, BL, BT, GC, IL and IQ."
+
+      - name: date_of_listing
+        data_type: string
+        description: "The date on which the shares will be/was traded for the first time on an exchange"
+
+      - name: paid_up_value
+        data_type: int64
+        description: "The amount of money a company has been paid from shareholders in exchange for shares of its stock"
+
+      - name: face_value
+        data_type: int64
+        description: "The company's net worth at the price of the share on its first day on the stock market"
+
+  - name: fact_equity
+    description: "Fact table for daily equities bhav_copy data in NSE"
     columns:
       - name: equity_id
         data_type: string
         description: "Unique identifier"
-        tests:
-          - unique:
-              severity: warn
-          - not_null:
-              severity: warn
 
       - name: symbol
         data_type: string
@@ -88,69 +102,18 @@ models:
         data_type: float64
         description: "Percentage difference between a security's closing price on a trading day and its closing price on the previous trading day"
 
-  - name: stg_bhav_copy_indices
-    description: ""
-    columns:
-      - name: index_id
+      - name: instrument_type
         data_type: string
-        description: "Unique identifier"
+        description: "Type of the instrument. Currently all data is of type (Equity)"
 
-      - name: index_name
+      - name: name_of_company
         data_type: string
-        description: "The name of the index."
+        description: "The stock name of the security"
 
-      - name: index_date
-        data_type: timestamp
-        description: The date of the report.""
+      - name: date_of_listing
+        data_type: string
+        description: "The date on which the shares will be/was traded for the first time on an exchange"
 
-      - name: open_index_value
-        data_type: float64
-        description: "Price at which the index opened on the day of the report."
-
-      - name: high_index_value
-        data_type: float64
-        description: "Highest traded price of the index during the day."
-
-      - name: low_index_value
-        data_type: float64
-        description: "Lowest traded price of the index during the day."
-
-      - name: closing_index_value
-        data_type: float64
-        description: "Price at which the index was traded at the end of the market."
-
-      - name: points_change
-        data_type: float64
-        description: "Difference between a index's closing price on a trading day and its closing price on the previous trading day"
-
-      - name: change_pct
-        data_type: float64
-        description: "Percentage difference between a index's closing price on a trading day and its closing price on the previous trading day"
-
-      - name: volume
+      - name: face_value
         data_type: int64
-        description: "The total quantity or number of shares traded during the day."
-
-      - name: turnover_rs_cr
-        data_type: string
-        description: "Trunover (in INR in crores)"
-
-      - name: p_e
-        data_type: string
-        description: "Index's current share price relative to its per-share earnings."
-
-      - name: p_b
-        data_type: string
-        description: "Index's current market value to its book value"
-
-      - name: div_yield
-        data_type: string
-        description: "Estimate of the dividend-only return of the index."
-
-      - name: ma_50
-        data_type: float64
-        description: "50-day moving average"
-
-      - name: ma_200
-        data_type: float64
-        description: "200-day moving average"
+        description: "The company's net worth at the price of the share on its first day on the stock market"
