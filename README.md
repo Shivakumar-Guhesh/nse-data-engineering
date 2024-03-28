@@ -40,23 +40,10 @@ This project uses the nselib python package to fetch bhavcopy data.
 
  * dbt - Used to transform the raw stock data to make it more suitable for analysis.
 
-## Getting Started
+## Trying out yourself!
 
-[First Time Setup](https://github.com/Shivakumar-Guhesh/nse-data-engineering/blob/main/setup.md)
-
-Build docker image
-
-`docker compose build`
-
-Start docker image
-
-`docker compose up`
-
-To access mage instance navigate to http://localhost:6789 in your browser
-
-Data loader pipeline using mage
-
-Data transformations using dbt
+[Execution Steps](https://github.com/Shivakumar-Guhesh/nse-data-engineering/blob/main/setup.md)
 
 
-(This project is the course-project of data-engineering-zoomcamp 2024)
+
+*(This project is the course-project of data-engineering-zoomcamp 2024)*
