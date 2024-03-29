@@ -34,6 +34,8 @@ We have two pipelines which are built locally and deployed in cloud
 
   `index_daily_run` *Runs daily at 13:30:00 UTC*
 
+  These pipelines were also used to load bulk past data via mage - backfills 
+
 
 
 Documentation: https://github.com/mage-ai/mage-ai 
