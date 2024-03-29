@@ -64,16 +64,21 @@ variable "docker_image" {
   default     = "mageai/mageai:latest"
 }
 
-variable "docker_image_args" {
-  type        = string
-  description = "Arguments to the entrypoint.The docker image's CMD is used if this is not provided."
-  default     = "USER_CODE_PATH=/home/src/nse-data-engineering"
-}
+# variable "docker_image_args" {
+#   type        = list(string)
+#   description = "Arguments to the entrypoint.The docker image's CMD is used if this is not provided."
+#   default     = ["USER_CODE_PATH=/home/src/nse-data-engineering"]
+# }
 
-variable "docker_image_command" {
+variable "docker_image_volume_mounts" {
   type        = string
+  description = "Volume to mount into the container's filesystem."
+  default     = "/home/src/mage_files"
+}
+variable "docker_image_command" {
+  type        = list(string)
   description = "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided."
-  default     = "mage start ./mage_files/"
+  default     = ["mage start ../../mage_files"]
 }
 
 variable "domain" {

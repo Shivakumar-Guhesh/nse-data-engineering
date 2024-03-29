@@ -71,6 +71,8 @@ resource "google_cloud_run_service" "run_service" {
     spec {
       containers {
         image = var.docker_image
+        # args  = var.docker_image_args
+        command = var.docker_image_command
         ports {
           container_port = 6789
         }
@@ -80,6 +82,12 @@ resource "google_cloud_run_service" "run_service" {
             memory = var.container_memory
           }
         }
+
+        env {
+          name  = "USER_CODE_PATH"
+          value = "/home/src/nse-data-engineering"
+        }
+
         env {
           name  = "FILESTORE_IP_ADDRESS"
           value = google_filestore_instance.instance.networks[0].ip_addresses[0]
