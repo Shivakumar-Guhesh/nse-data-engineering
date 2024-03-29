@@ -45,5 +45,8 @@ This project uses the nselib python package to fetch bhavcopy data.
 [Execution Steps](https://github.com/Shivakumar-Guhesh/nse-data-engineering/blob/main/setup.md)
 
 
+## 
 
-*(This project is the course-project of data-engineering-zoomcamp 2024)*
+*(This project is the course-project of data-engineering-zoomcamp 2024*
+
+*https://github.com/DataTalksClub/data-engineering-zoomcamp*

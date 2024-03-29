@@ -64,6 +64,18 @@ variable "docker_image" {
   default     = "mageai/mageai:latest"
 }
 
+variable "docker_image_args" {
+  type        = string
+  description = "Arguments to the entrypoint.The docker image's CMD is used if this is not provided."
+  default     = "USER_CODE_PATH=/home/src/nse-data-engineering"
+}
+
+variable "docker_image_command" {
+  type        = string
+  description = "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided."
+  default     = "mage start ./mage_files/"
+}
+
 variable "domain" {
   description = "Domain name to run the load balancer on. Used if `ssl` is `true`."
   type        = string
