@@ -1,6 +1,6 @@
 select 
-    `Ticker` as symbol,
-    `Description` as name_of_company,
-    `Sector` as sector,
-    `Industry` as industry
+    trim(`Ticker`) as symbol,
+    trim(`Description`) as name_of_company,
+    trim(`Sector`) as sector,
+    trim(`Industry`) as industry
 from {{ ref('sector_lookup')}}
