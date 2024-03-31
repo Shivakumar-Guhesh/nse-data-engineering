@@ -13,20 +13,23 @@
 with equity_data as (
     select *, 
         'Equity' as instrument_type
-    from `nse-data-engineering`.`dbt_sg`.`stg_bhav_copy_equities`
+        from {{ ref('stg_bhav_copy_equities') }}
 ), 
 
 dim_symbols as (
-    select * from `nse-data-engineering`.`dbt_sg`.`dim_symbols`
+    select * 
+    from {{ ref('dim_symbols') }}
     where series = 'EQ'
 ),
 
 dim_sectors as (
-    select * from `nse-data-engineering`.`dbt_sg`.`dim_sectors`
+    select * 
+    from {{ ref('dim_sectors') }}
 ),
 
 dim_market_cap as (
-    select * from `nse-data-engineering`.`dbt_sg`.`dim_market_cap`
+    select * 
+    from {{ ref('dim_market_cap') }}
 )
 
 
