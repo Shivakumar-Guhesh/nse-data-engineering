@@ -68,6 +68,7 @@ This project uses the nselib python package to fetch bhavcopy data. Expected vol
   - [Docker](./setup.md#docker)
   - [Terraform](./setup.md#terraform)
   - [Mage](./setup.md#mage)
+  - [BigQuery](./setup.md#bigquery)
   - [DBT](./setup.md#dbt)
 
 ## Dashboard
