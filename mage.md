@@ -22,7 +22,7 @@ We have two pipelines which are built locally and deployed in cloud
     - Transformer `transform_index`
     - Data Exporter `export_daily_index_gcs` 
 
-  Transformation applied: 
+  Transformations applied: 
 
     -  Assign appropriate data types 
     

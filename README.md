@@ -12,15 +12,17 @@
 ## Problem statement  
 The aim of this project is to build an end-to-end data pipeline (including a dashboard) for analysing and visualizing National Stock Exchange (NSE) data.
 
-~~*What the problem the project solves?*~~
-
 This project provides a simple dashboard for viewing trends and insights of NSE on a daily basis.
 
 This dashboard could help answer questions such as:
+1. Sector wise trade activity
+1. Industry wise trade activity
+1. Biggest increased/decreased stocks
+1. Change percent of a particular stock
 
 ## Dataset
 
-This project uses the nselib python package to fetch bhavcopy data.
+This project uses the nselib python package to fetch bhavcopy data. Expected volume from source is around `2500 records per day`
 
 #### What is bhavcopy?
 
@@ -36,24 +38,27 @@ This project uses the nselib python package to fetch bhavcopy data.
 
 ## Tools and Technologies used
 
- * Docker + Docker-compose - Used to maintain consistent versions across environments and define/share multi-containers
+ * **Docker + Docker-compose** - Used to maintain consistent versions across environments and define/share multi-containers
  
- * [Mage](./mage.md) - Used to create and orchestrate the ETL (extract, transform, load) pipelines for the stock data analysis project.
+ * **[Mage](./mage.md)** - Used to create and orchestrate the ETL (extract, transform, load) pipelines for the stock data analysis project.
 
- * Terraform - Used to automate the deployment and management of infrastructure on Google Cloud Platform (GCP)
+ * **Terraform** - Used to automate the deployment and management of infrastructure on Google Cloud Platform (GCP)
 
- * GCP 
+ * **GCP** 
     * [BigQuery](./bigquery.md) is used as data-warehouse to store and query the stock data 
 
     * Google Cloud Storage is used as data lake to store the raw data before it is transformed
 
-    * Cloud Run is used for running deployed Mage pipelines on cloud
+    * [Cloud Run](./mage_gcp_deployment.md) is used for running deployed Mage pipelines on cloud
+    
+    * [looker_studio](./looker_studio.md) - Used for creating a dashboard to visaulize the data
 
- * [dbt](./dbt.md) - Used to transform the raw stock data to make it more suitable for analysis.
+ * **[dbt](./dbt.md)** - Used to transform the raw stock data to make it more suitable for analysis.
+
 
  ## Architecture
 
- ![Architecture image](images\nse-architecture.png "Architecture")
+ ![Architecture image](images/nse-architecture.png "Architecture")
 
 ## Trying out yourself!
 
@@ -65,11 +70,23 @@ This project uses the nselib python package to fetch bhavcopy data.
   - [Mage](./setup.md#mage)
   - [DBT](./setup.md#dbt)
 
+## Dashboard
 
-## 
+[LookerStudio Link](https://lookerstudio.google.com/reporting/989469a8-23d3-47c0-8f04-6df30224075f)
+
+  Overall_market Page
+   ![Overall_market ](images/Overall_market.png "Overall_market")
+
+  Symbol Wise Reports
+  ![symbol_wise_reports ](images/symbol_wise_reports.png "symbol_wise_reports")
+
+  > Stocks that have their current price above the 50-day moving average indicate that the stock is experiencing a bullish trend and have the potential to reach a higher stock price and vice versa
+
 
 Special thanks to  [DataTalks.Club](https://datatalks.club/) for 
 offering this Data Engineering course completely free
+
+
 
 *(This project is the course-project of data-engineering-zoomcamp 2024*
 

@@ -16,11 +16,20 @@ DBT is used for data modelling, applying transforms and create partitioned table
 - dim_symbols
   - Dimension table containing information about equity-symbols
 
+- dim_sectors
+  - Dimension table containing information about sector and industry details of symbols
+
+- dim_market_cap
+  - Dimension table containing information about market-cap and categorization of symbols
+
 - fact_equity
   - Fact table for daily equities bhav_copy data in NSE
   - Partitioned by `timestamp` column to enhance querying
 
 *Note: Detailed documentation is available in dbt documentation*
+
+### Lineage:
+   ![Lineage image](images/fact_table_lineage.png "Lineage")
 
 ## Transformations:
 
