@@ -1,0 +1,1 @@
+export GOOGLE_APPLICATION_CREDENTIALS='../../keys/nse-data-engineering-1b661da6efa6.json'
